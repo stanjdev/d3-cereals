@@ -39,8 +39,8 @@ export default function drawTopContent(content) {
 
   title
     .append('text')
-    .text('All-Bran with Extra Fiber')
-    .attr('transform', `translate(${width / 2.8}, 20)`)
+    .text('All-Bran with Extra Fiber, Nutritional Contents')
+    .attr('transform', `translate(${width / 3}, 20)`)
     .attr('class', 'labelText')
 
   svg.append('g')

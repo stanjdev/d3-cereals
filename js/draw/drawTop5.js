@@ -10,12 +10,12 @@ export default function drawTop5(top5Data) {
     .range([margin, width])
     .padding(0.05)
 
-  const sugarExtent = d3.extent(top5Data, (d) => d.sugars)
+  const maxCarbs = Math.max(...top5Data.map((cereal) => cereal.carbo))
   const yscale = d3.scaleLinear()
-    .domain(sugarExtent)
+    .domain([0, maxCarbs])
     .range([height, margin])
 
-  const svg = d3.select('#svg_top_cereals_sugar')
+  const svg = d3.select('#svg_top_cereals_carbs')
     .style('margin-top', margin)
     .style('border', 'solid 1px')
 
@@ -39,7 +39,7 @@ export default function drawTop5(top5Data) {
 
   title
     .append('text')
-    .text('Top 5 Cereals and Their Sugar Content')
+    .text('Top 5 Cereals and Their Carbo Content')
     .attr('transform', `translate(${width / 2.8}, 20)`)
     .attr('class', 'labelText')
 
@@ -50,7 +50,7 @@ export default function drawTop5(top5Data) {
     .append('rect')
     .attr('fill', (d, i) => color(i))
     .attr('x', (d, i) => xscale(d.name))
-    .attr('y', (d, i) => yscale(d.sugars))
+    .attr('y', (d, i) => yscale(d.carbo))
     .attr('width', xscale.bandwidth())
-    .attr('height', (d) => height - yscale(d.sugars))
+    .attr('height', (d) => height - yscale(d.carbo))
 };
